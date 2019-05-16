@@ -28,3 +28,4 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/post', 'PostController@index');
 Route::post('/upload', 'PostController@upload');
+Route::delete('post/destroy/{id}', 'PostController@destroy');

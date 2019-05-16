@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Model\Posts;
 use Socialite;
 use Illuminate\Http\Request;
 //６の演習で１行追加
@@ -69,5 +70,19 @@ class PostController extends Controller
                 ->withErrors();
         }
     }
+
+    /**
+     * 投稿削除処理
+     */
+
+    public function destroy($id)
+    {
+        #削除処理
+        $post = Posts::findOrFail($id);
+        $post->delete();
+        
+        #ホーム画面にリダイレクト
+        return redirect('/home');
+        }
 
 }

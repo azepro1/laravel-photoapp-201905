@@ -23,5 +23,11 @@
         <img src = <?php echo $path ?> >
         <!-- ToDo {{}}の書き方に直す -->
         <?php echo $post->caption ?>
-    @endforeach
-@endsection
+        <form action="{{ action('PostController@destroy', $post->id) }}" id="form_{{ $post->id }}" method="post">
+            {{ csrf_field() }}
+            {{ method_field('delete') }}
+            <button class="btn"> 削除 </button>
+        </form>
+
+        @endforeach
+    @endsection
