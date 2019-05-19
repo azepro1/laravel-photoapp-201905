@@ -13,9 +13,6 @@
 
 Route::get('/user', 'UserController@index');
 
-Route::get('/bbs', 'BbsController@index');
-Route::post('/bbs', 'BbsController@create');
-
 Route::get('github', 'Github\GithubController@top');
 Route::post('github/issue', 'Github\GithubController@createIssue');
 Route::get('/', 'Auth\LoginController@loginConfirm');
@@ -29,3 +26,10 @@ Route::get('/home', 'HomeController@index');
 Route::get('/post', 'PostController@index');
 Route::post('/upload', 'PostController@upload');
 Route::delete('post/destroy/{id}', 'PostController@destroy');
+
+Route::post('like/store/post/{id}', 'LikeController@store');
+Route::post('like/destroy/post/{id}', 'LikeController@destroy');
+
+Route::get('likeuser/index/post/{id}', 'LikeUserController@index');
+
+Route::get('profile/user/{id}', 'ProfileController@index');

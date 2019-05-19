@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;// 追加！
 use Illuminate\Http\Request;// 追加！
 use Illuminate\Support\Facades\DB;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -69,11 +71,16 @@ class LoginController extends Controller
     {
         $github_user = Socialite::driver('github')->user();
 
+
         $now = date("Y/m/d H:i:s");
-        $app_user = DB::select('select * from public.user where github_id = ?', [$github_user->user['login']]);
+        $app_user = DB::select('select * from public.users where github_id = ?', [$github_user->user['login']]);
         if (empty($app_user)) {
-            DB::insert('insert into public.user (github_id, created_at, updated_at) values (?, ?, ?)', [$github_user->user['login'], $now, $now]);
+            DB::insert('insert into public.users (github_id, created_at, updated_at) values (?, ?, ?)', [$github_user->user['login'], $now, $now]);
         }
+
+        $user = DB::table('users')->where('github_id', $github_user->nickname)->first();
+        $user_id = $user->id;
+        $request->session()->put('user_id', $user_id);
         $request->session()->put('github_token', $github_user->token);
 
         return redirect('github');

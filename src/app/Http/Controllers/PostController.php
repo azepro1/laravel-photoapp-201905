@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Model\Posts;
+use App\Model\Post;
 use Socialite;
 use Illuminate\Http\Request;
-//６の演習で１行追加
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
@@ -49,20 +48,20 @@ class PostController extends Controller
         $token = session()->get('github_token');
         $github_user = Socialite::driver('github')->userFromToken($token);
         $nickname = $github_user->nickname;
+        $user_id = DB::table('users')->where('github_id', $nickname)->first()->id;
 
         if (($request->file('file')->isValid([]))&&(true)) {
             $path = $request->file->store('public');
             $caption = $request->caption;
             //６の演習で２行追加
             $now = date("Y/m/d H:i:s");
-            DB::insert('insert into public.posts (name, nickname, caption, path, created_at, updated_at) values (?, ?, ?, ?, ?, ?)', ['filename', $nickname, $caption, basename($path), $now, $now]);
+            DB::insert('insert into public.posts (path, caption, user_id, nickname, created_at, updated_at) values (?, ?, ?, ?, ?, ?)', [basename($path), $caption, $user_id, $nickname, $now, $now]);
             //６の演習で１行コメントアウト
             //return view('home')->with('filename', basename($path));
             //６の演習で２行追加
             //$sql_result = DB::select('select * from public.image');
             //return view('home')->with('sql_result', $sql_result);
-            $posts = DB::table('posts')->get();
-            return view('home', ['posts' => $posts]);
+            return redirect('home');
         } else {
             return redirect()
                 ->back()
@@ -78,7 +77,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         #削除処理
-        $post = Posts::findOrFail($id);
+        $post = Post::findOrFail($id);
         $post->delete();
         
         #ホーム画面にリダイレクト
