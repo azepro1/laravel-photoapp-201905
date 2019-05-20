@@ -26,6 +26,6 @@
         <br>
         <hr>
         {{ csrf_field() }}
-        <button class="btn btn-success"> Upload </button>
+        <button class="btn btn-primary"> 投稿 </button>
     </form>
 @endsection

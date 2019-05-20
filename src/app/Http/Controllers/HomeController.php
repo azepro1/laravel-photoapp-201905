@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         //投稿の一覧を取得
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        $posts = Post::orderBy('id', 'desc')->paginate(9);
 
         //投稿ごとに、ログイン中ユーザがlike済みか取得
         $user_id = $request->session()->get('user_id');

@@ -1,6 +1,6 @@
 @extends('template')
 @extends('parentheader2')
-@section('title', 'ホーム画面')
+@section('title', 'プロフィール画面')
 @section('head')
     @section('header2')
         @parent
@@ -16,20 +16,27 @@
     </ul>
     @endif
 
-    <!-- アイコンの表示 -->
-    <?php $path = 'https://avatars.githubusercontent.com/' . $nickname ?>
-    <img src="{{ asset($path) }}" width=30>
-    <!-- ニックネームの表示 -->
-    {{ $nickname }}
-    <!-- Like数の表示 -->
-    もらったLike　{{ $likes_count }}
-    <hr>
+    <!--ToDo: CSSの読み込みがうまくいかない -->
+    <div class="media mt-5 mb-3">
+        <!-- アイコンの表示 -->
+        <?php $path = 'https://avatars.githubusercontent.com/' . $nickname ?>
+            <img class="align-self-center mr-3" src="{{ asset($path) }}" width=50>
+            <div class="media-body">
+                <!-- ニックネームの表示 -->
+                <h5>{{ $nickname }}</h5>
+                <!-- Like数の表示 -->
+                <p>もらったLikeの数：　{{ $likes_count }}</p>
+        </div>
+    </div>
 
     <!-- 画像一覧表示 -->
-    @foreach ($posts as $post)
-        <!-- 画像の表示 -->
-        <?php $path = 'storage/' . $post->path; ?>
-        <img src="{{ asset($path) }}">
-        <br>
-    @endforeach
+    <div class="row">
+        @foreach ($posts as $post)
+            <div class="col-md-3 m-0 p-0">
+                <!-- 画像の表示 -->
+                <?php $path = 'storage/' . $post->path; ?>
+                <img class="img-fluid" src="{{ asset($path) }}">
+            </div>
+        @endforeach
+    </div>
 @endsection

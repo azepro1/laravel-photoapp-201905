@@ -7,6 +7,9 @@
     @show
 @endsection
 @section('content')
+    <br>
+    <br>
+    <br>
     <!-- Githubログインボタン -->
-    <input type="button" onclick="location.href='github'" value="githubでログイン">
+    <input class="btn btn-primary btn-block mt-11" type="button" onclick="location.href='github'" value="githubでログイン">
 @endsection

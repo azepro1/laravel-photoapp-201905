@@ -1,6 +1,6 @@
 @extends('template')
 @extends('parentheader2')
-@section('title', 'ホーム画面')
+@section('title', 'Likeユーザ画面')
 @section('head')
     @section('header2')
         @parent
