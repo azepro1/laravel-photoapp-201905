@@ -1,8 +1,8 @@
 @extends('template')
-@extends('parentheader1')
+@extends('navbar')
 @section('title', 'ログイン画面')
 @section('head')
-    @section('header1')
+    @section('navbar')
         @parent
     @show
 @endsection

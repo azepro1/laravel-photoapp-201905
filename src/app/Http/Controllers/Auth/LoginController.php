@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller,
+    Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;// 追加！
-use Illuminate\Http\Request;// 追加！
+use Socialite;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -43,11 +44,11 @@ class LoginController extends Controller
     }
 
     /**
-     * login画面への遷移 updated on 2019.05.08
+     * login画面への遷移
      *
      * @return \Illuminate\Http\Response
      */
-    public function loginConfirm()// 追加！
+    public function loginConfirm()
     {
         return view('login'); 
     }
@@ -57,7 +58,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()// 追加！
+    public function redirectToProvider()
     {
         return Socialite::driver('github')->scopes(['read:user', 'public_repo'])->redirect(); 
     }
@@ -84,5 +85,14 @@ class LoginController extends Controller
         $request->session()->put('github_token', $github_user->token);
 
         return redirect('github');
+    }
+
+    /**
+     * ログアウト
+     */
+    public function logout()
+    {
+        Session::flush();
+        return redirect('/');
     }
 }

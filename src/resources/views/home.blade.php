@@ -1,19 +1,18 @@
 @extends('template')
-@extends('parentheader2')
+@extends('navbar')
 @section('title', 'ホーム画面')
 @section('head')
-    @section('header2')
+    @section('navbar')
         @parent
     @show
 @endsection
 @section('content')
-    <!-- エラーメッセージ。なければ表示しない -->
-    @if ($errors->any())
-    <ul>
-        @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
+
+    <!-- 画像投稿成功時のメッセージ。 -->
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
     @endif
 
     <!-- temp. ログインしてる？ -->

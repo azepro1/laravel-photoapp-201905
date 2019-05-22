@@ -1,25 +1,27 @@
 @extends('template')
-@extends('parentheader2')
+@extends('navbar')
 @section('title', 'ホーム画面')
 @section('head')
-    @section('header2')
+    @section('navbar')
         @parent
     @show
 @endsection
 @section('content')
-    <!-- エラーメッセージ。なければ表示しない -->
+    <!-- 画像投稿時のエラーメッセージ。 -->
     @if ($errors->any())
-    <ul>
-        @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
+    <div class="alert alert-danger">
+        <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
         @endforeach
-    </ul>
+        </ul>
+    </div>
     @endif
 
     <!-- フォーム -->
-    <form action="{{ url('upload') }}" method="POST" enctype="multipart/form-data">
+    <form action="/upload" method="POST" enctype="multipart/form-data">
         <label for="photo">画像ファイル:</label>
-        <input type="file" class="form-control" name="file">
+        <input type="file" class="form-control" name="photo">
         <br>
         <label for="caption">キャプション:</label>
         <input type="text" class="form-control" name="caption" size="50">

@@ -28,37 +28,7 @@ class GithubController extends Controller
 
         $app_user = DB::select('select * from public.users where github_id = ?', [$github_user->user['login']]);
 
-
-        //最終課題コメントアウト
-        //return view('github', [
-        //    'user' => $app_user[0],
-        //    'nickname' => $github_user->nickname,
-        //    'token' => $token,
-        //    'repos' => array_map(function($o) {
-        //        return $o->name;
-        //    }, json_decode($res->getBody()))
-        //]);
-        //nicknameの引き継ぎは不要なので削除する。
-        return redirect('home')->with('nickname', $github_user->nickname);
-    }
-
-    public function createIssue(Request $request)
-    {
-        $token = $request->session()->get('github_token', null);
-        $user = Socialite::driver('github')->userFromToken($token);
-
-        $client = new \GuzzleHttp\Client();
-        $res = $client->request('POST', 'https://api.github.com/repos/' . $user->user['login'] . '/' . $request->input('repo') . '/issues', [
-            'auth' => [$user->user['login'], $token],
-            'json' => [
-                'title' => $request->input('title'),
-                'body' => $request->input('body')
-            ]
-        ]);
-
-        return view('done', [
-            'response' => json_decode($res->getBody())->html_url
-        ]);
+        return redirect('home');
     }
 
 }
