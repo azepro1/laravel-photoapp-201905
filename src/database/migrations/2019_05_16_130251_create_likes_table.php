@@ -19,12 +19,12 @@ class CreateLikesTable extends Migration
             $table->integer('post_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_id')
+            $table->foreign('user_id') // 外部キー
                   ->references('id')
-                  ->on('user')
+                  ->on('users')
                   ->onDelete('cascade'); // userが削除されたとき、それに関連するlikeも一気に削除される
 
-            $table->foreign('post_id')
+            $table->foreign('post_id') //外部キー
                   ->references('id')
                   ->on('posts')
                   ->onDelete('cascade'); // postが削除されたとき、それに関連するlikeも一気に削除される

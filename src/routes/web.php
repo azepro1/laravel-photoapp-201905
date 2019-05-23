@@ -19,6 +19,10 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::get('login/github', 'Auth\LoginController@redirectToProvider');
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 
+//Facebookログイン
+Route::get('auth/login/facebook', 'Auth\SocialController@getFacebookAuth');
+Route::get('auth/login/callback/facebook', 'Auth\SocialController@getFacebookAuthCallback');
+
 Route::post('user', 'User\UserController@updateUser');
 
 Route::get('/home', 'HomeController@index');

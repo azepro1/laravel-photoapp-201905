@@ -15,11 +15,16 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->string('path');
             $table->string('nickname');
             $table->string('caption');
+            $table->integer('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id') //外部キー
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade'); // userが削除されたとき、それに関連するpostも一気に削除される
         });
     }
 

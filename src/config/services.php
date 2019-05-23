@@ -15,9 +15,15 @@ return [
     */
 
     'github' => [
-        'client_id' => env('GITHUB_CLIENT_ID'),         // 追加！
-        'client_secret' => env('GITHUB_CLIENT_SECRET'), // 追加！
+        'client_id' => env('GITHUB_CLIENT_ID'),         
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect' => '/login/github/callback',
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_ID'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => 'auth/login/callback/facebook',
     ],
 
     'mailgun' => [
