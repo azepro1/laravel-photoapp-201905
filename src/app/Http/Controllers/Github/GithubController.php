@@ -27,7 +27,6 @@ class GithubController extends Controller
         ]);
 
         $app_user = DB::select('select * from public.users where github_id = ?', [$github_user->user['login']]);
-
         return redirect('home');
     }
 

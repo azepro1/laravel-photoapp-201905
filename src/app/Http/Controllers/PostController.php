@@ -28,9 +28,9 @@ class PostController extends Controller
     {
         //git-hubのnickname取得
         //ToDo: GithubControllerでも同じものを取得してしまっている（冗長）。
-        $token = session()->get('github_token');
-        $github_user = Socialite::driver('github')->userFromToken($token);
-        $nickname = $github_user->nickname;
+        //$token = session()->get('github_token');
+        //$github_user = Socialite::driver('github')->userFromToken($token);
+        $nickname = $request->session()->get('display_name');
         $user_id = DB::table('users')->where('github_id', $nickname)->first()->id;
 
         if (($request->file('photo')->isValid([]))&&(true)) {

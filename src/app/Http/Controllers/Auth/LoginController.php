@@ -72,7 +72,6 @@ class LoginController extends Controller
     {
         $github_user = Socialite::driver('github')->user();
 
-
         $now = date("Y/m/d H:i:s");
         $app_user = DB::select('select * from public.users where github_id = ?', [$github_user->user['login']]);
         if (empty($app_user)) {
@@ -80,11 +79,10 @@ class LoginController extends Controller
         }
 
         $user = DB::table('users')->where('github_id', $github_user->nickname)->first();
-        $user_id = $user->id;
-        $request->session()->put('user_id', $user_id);
-        $request->session()->put('github_token', $github_user->token);
+        $request->session()->put('user_id', $user->id);
+        $request->session()->put('display_name', $user->github_id);
 
-        return redirect('github');
+        return redirect('home');
     }
 
     /**
