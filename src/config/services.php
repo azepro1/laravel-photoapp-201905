@@ -24,7 +24,8 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_ID'),
         'client_secret' => env('FACEBOOK_SECRET'),
-        'redirect' => 'auth/login/callback/facebook',
+        'redirect' => env('FACEBOOK_CALLBACKURL')
+        //'redirect' => 'auth/login/callback/facebook',
     ],
 
     'mailgun' => [
