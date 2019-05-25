@@ -17,8 +17,11 @@
 
     <!-- ログインしてる？ -->
     @if(Session::get('user_id'))
-        {{ 'logged_in user:' }} {{ $login_user->social_id }}
-        <img src="{{ asset($login_user->image_path) }}" width="50">
+        <div class="float-right">
+            {{ 'logged_in:' }} {{ $login_user->social_id }}
+            <img src="{{ asset($login_user->image_path) }}" width="35">
+        </div>
+        <br>
     @else
         {{ 'You\'re not logged in' }}
     @endif

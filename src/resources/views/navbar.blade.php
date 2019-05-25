@@ -1,6 +1,6 @@
 @section('navbar')
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand ml-3" href="/">Instaもどき</a>
+        <a class="navbar-brand ml-5" href="/">Instaもどき</a>
         <ul class="navbar-nav">
             @if (Session::get('user_id'))
                 <li class="nav-item">
