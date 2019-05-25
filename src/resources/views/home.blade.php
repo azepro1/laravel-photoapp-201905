@@ -15,22 +15,22 @@
     </div>
     @endif
 
-    <!-- temp. ログインしてる？ -->
+    <!-- ログインしてる？ -->
     @if(Session::get('user_id'))
-        {{ 'logged_in user:' }} {{ Session::get('user_id') }}
+        {{ 'logged_in user:' }} {{ $login_user->social_id }}
+        <img src="{{ asset($login_user->image_path) }}" width="50">
     @else
-        {{ 'ログインしてない' }}
+        {{ 'You\'re not logged in' }}
     @endif
     <hr>
 
     <!-- 画像一覧表示 -->
     <div class="row">
         @foreach ($posts as $post)
-            <div class="col-md-4 m-0 p-1">
+            <div class="col-md-4">
                 <div class="card">
                     <!-- 画像の表示 -->
-                    <?php $path = 'storage/' . $post->path; ?>
-                    <img class= "card-img-top img-fluid rounded" src="{{ asset($path) }}">
+                    <img class= "card-img-top img-fluid rounded" src="{{ asset($post->path) }}">
 
                     <div class="card-body">
                         <div class="row">

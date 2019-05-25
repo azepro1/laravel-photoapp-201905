@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\Post;
 use App\Model\Like;
+use App\Model\User;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,6 @@ class HomeController extends Controller
 
         //投稿ごとに、ログイン中ユーザがlike済みか取得
         $user_id = $request->session()->get('user_id');
-        //dd($posts[0]->id);
         $count = 0;
         foreach ($posts as $post) {
             //like済みの場合、trueを返す
@@ -30,7 +30,11 @@ class HomeController extends Controller
             $posts[$count]['liked'] = $liked;
             ++$count;
         }
-        return view('home', ['posts' => $posts, 'request' => $request]);
+
+        //ログインユーザを取得
+        $login_user = User::where('id', $user_id)->first();
+
+        return view('home', ['posts' => $posts, 'request' => $request, 'login_user' => $login_user]);
     }
 
 

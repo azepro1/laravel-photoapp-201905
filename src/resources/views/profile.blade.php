@@ -16,8 +16,7 @@
     </ul>
     @endif
 
-    <!--ToDo: CSSの読み込みがうまくいかない -->
-    <div class="media mt-5 mb-3">
+    <div class="media">
         <!-- アイコンの表示 -->
             <img class="align-self-center mr-3" src="{{ asset($image_path) }}" width=50>
             <div class="media-body">
@@ -33,8 +32,7 @@
         @foreach ($posts as $post)
             <div class="col-md-3 m-0 p-0">
                 <!-- 画像の表示 -->
-                <?php $path = 'storage/' . $post->path; ?>
-                <img class="img-fluid" src="{{ asset($path) }}">
+                <img class="img-fluid" src="{{ asset($post->path) }}">
             </div>
         @endforeach
     </div>
