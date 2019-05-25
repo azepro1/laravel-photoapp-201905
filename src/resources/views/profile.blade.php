@@ -19,8 +19,7 @@
     <!--ToDo: CSSの読み込みがうまくいかない -->
     <div class="media mt-5 mb-3">
         <!-- アイコンの表示 -->
-        <?php $path = 'https://avatars.githubusercontent.com/' . $nickname ?>
-            <img class="align-self-center mr-3" src="{{ asset($path) }}" width=50>
+            <img class="align-self-center mr-3" src="{{ asset($image_path) }}" width=50>
             <div class="media-body">
                 <!-- ニックネームの表示 -->
                 <h5>{{ $nickname }}</h5>

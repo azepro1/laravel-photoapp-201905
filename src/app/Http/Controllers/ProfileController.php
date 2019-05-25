@@ -18,11 +18,14 @@ class ProfileController extends Controller
         //投稿の一覧を取得
         $posts = Post::where('user_id', $user_id)->orderBy('id', 'desc')->get();
         //ユーザ名を取得
-        $github_id = User::where('id', $user_id)->first()->github_id;
+        $social_id = User::where('id', $user_id)->first()->social_id;
+        //プロフィール画像のpathを取得
+        $image_path = User::where('id', $user_id)->first()->image_path;
         //総Like数（likeに紐付く、postのuser_idの合計）を取得する
         $likes_count = Like::join('posts', 'likes.post_id', '=', 'posts.id')
                                 ->where('posts.user_id', $user_id)
                                 ->count();
-        return view('profile', ['posts' => $posts, 'nickname' => $github_id, 'likes_count' => $likes_count]);
+
+        return view('profile', ['posts' => $posts, 'nickname' => $social_id, 'image_path' => $image_path, 'likes_count' => $likes_count]);
     }
 }

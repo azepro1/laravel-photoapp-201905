@@ -4,7 +4,7 @@
         <ul class="navbar-nav">
             @if (Session::get('user_id'))
                 <li class="nav-item">
-                    <a class="nav-link" href="/home">ホーム</a>
+                    <a class="nav-link" href="/">ホーム</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout">ログアウト</a>
@@ -14,13 +14,13 @@
                 </li>
             @else
                 <li class="nav-item">
-                    <a class="nav-link" href="/home">ホーム</a>
+                    <a class="nav-link" href="/">ホーム</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">ログイン</a>
+                    <a class="nav-link" href="/login">ログイン</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">投稿</a>
+                    <a class="nav-link" href="/login">投稿</a>
                 </li>
             @endif
         </ul>

@@ -11,9 +11,7 @@
     <br>
     <br>
     <!-- Githubログインボタン -->
-    <input class="btn btn-primary btn-block mt-11" type="button" onclick="location.href='github'" value="githubでログイン">
+    <a href="auth/login/github" class="btn btn-primary btn-block mt-11">GitHubでログイン</a>
     <!-- Facebookログインボタン -->
-    <a class="btn btn-block btn-social btn-facebook" href="auth/login/facebook">
-        <span class="fa fa-facebook"></span> Sign in with Facebook
-    </a>
+    <a href="auth/login/facebook" class="btn btn-primary btn-block mt-11">Facebookでログイン</a>
 @endsection

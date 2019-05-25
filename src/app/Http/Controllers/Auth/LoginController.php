@@ -44,7 +44,7 @@ class LoginController extends Controller
     }
 
     /**
-     * login画面への遷移
+     * ログイン
      *
      * @return \Illuminate\Http\Response
      */
@@ -54,43 +54,11 @@ class LoginController extends Controller
     }
 
     /**
-     * GitHubの認証ページヘユーザーをリダイレクト
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function redirectToProvider()
-    {
-        return Socialite::driver('github')->scopes(['read:user', 'public_repo'])->redirect(); 
-    }
-
-    /**
-     * GitHubからユーザー情報を取得
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function handleProviderCallback(Request $request)
-    {
-        $github_user = Socialite::driver('github')->user();
-
-        $now = date("Y/m/d H:i:s");
-        $app_user = DB::select('select * from public.users where github_id = ?', [$github_user->user['login']]);
-        if (empty($app_user)) {
-            DB::insert('insert into public.users (github_id, created_at, updated_at) values (?, ?, ?)', [$github_user->user['login'], $now, $now]);
-        }
-
-        $user = DB::table('users')->where('github_id', $github_user->nickname)->first();
-        $request->session()->put('user_id', $user->id);
-        $request->session()->put('display_name', $user->github_id);
-
-        return redirect('home');
-    }
-
-    /**
      * ログアウト
      */
     public function logout()
     {
         Session::flush();
-        return redirect('/');
+        return redirect('login');
     }
 }

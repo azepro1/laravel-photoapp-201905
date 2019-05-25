@@ -31,14 +31,14 @@ class PostController extends Controller
         //$token = session()->get('github_token');
         //$github_user = Socialite::driver('github')->userFromToken($token);
         $nickname = $request->session()->get('display_name');
-        $user_id = DB::table('users')->where('github_id', $nickname)->first()->id;
+        $user_id = DB::table('users')->where('social_id', $nickname)->first()->id;
 
         if (($request->file('photo')->isValid([]))&&(true)) {
             $path = $request->photo->store('public');
             $caption = $request->caption;
             $now = date("Y/m/d H:i:s");
             DB::insert('insert into public.posts (path, caption, user_id, nickname, created_at, updated_at) values (?, ?, ?, ?, ?, ?)', [basename($path), $caption, $user_id, $nickname, $now, $now]);
-            return redirect('home')
+            return redirect('/')
                 ->with('success', '新しい投稿をしました');
         }/* else {
             return redirect()
@@ -56,7 +56,7 @@ class PostController extends Controller
         #削除処理
         $post = Post::findOrFail($id);
         $post->delete();
-        return redirect('/home');
+        return redirect('/');
         }
 
 }

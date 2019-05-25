@@ -18,10 +18,10 @@
 
     <!-- ユーザ一覧表示 -->
     @foreach ($like_users as $user)
-        <?php $path = 'https://avatars.githubusercontent.com/' . $user->github_id ?>
-        <img src="{{ asset($path) }}" width=30>
+        <img src="{{ asset($user->image_path) }}" width=30>
         <a href="{{ action('ProfileController@index', $user->id) }}">
-            {{ $user->github_id }}
+            {{ $user->social_id }}
         </a>
+        <hr>
     @endforeach
 @endsection
