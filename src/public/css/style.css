@@ -5,3 +5,20 @@
 body {
     font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'  
     }
+
+.image-delete {
+    position: relative;
+}
+.image-delete button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}     
+.image-delete img {
+    width: 100%;
+}
+
+.like-color {
+    color: palevioletred;
+}
+  

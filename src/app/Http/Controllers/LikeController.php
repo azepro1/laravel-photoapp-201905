@@ -31,6 +31,6 @@ class LikeController extends Controller
       $like = Like::where('post_id', $post_id)->where('user_id', $user_id)->first();
       Like::findOrFail($like->id)->delete();
 
-      return redirect('/home');
+      return redirect('/');
     }
 }

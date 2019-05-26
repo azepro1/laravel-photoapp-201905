@@ -1,11 +1,5 @@
 jQuery (function ()
 {
-    //テスト
-    //$('input[name="photo"]').change(function(){
-    //    var file = this.files[0];
-    //    $("#jq_test").text("変更")
-    //})
-
     //投稿画像のプレビュー表示
     $(function(){
         $('input[name="photo"]').change(function(e){

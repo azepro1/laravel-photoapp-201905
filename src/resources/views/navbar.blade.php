@@ -4,16 +4,15 @@
         <ul class="navbar-nav">
             @if (Session::get('user_id'))
                 <li class="nav-item">
+                </li>
+                <li class="nav-item ml-3">
                     <a class="nav-link" href="/post">Post</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ml-3">
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
             @else
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Post</a>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item ml-3 mr-3">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
             @endif
