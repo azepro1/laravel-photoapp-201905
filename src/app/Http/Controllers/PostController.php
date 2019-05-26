@@ -67,7 +67,7 @@ class PostController extends Controller
             $now = date("Y/m/d H:i:s");
             DB::insert('insert into public.posts (path, caption, user_id, nickname, created_at, updated_at) values (?, ?, ?, ?, ?, ?)', [$path, $caption, $user_id, $nickname, $now, $now]);
             return redirect('/')
-                ->with('success', '新しい投稿をしました');
+                ->with('success', 'Posted successfully!');
         }
     }
 

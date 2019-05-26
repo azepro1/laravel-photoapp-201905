@@ -76,7 +76,7 @@
                                     <form action="{{ action('PostController@destroy', $post->id) }}" id="form_{{ $post->id }}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('delete') }}
-                                        <button class="btn btn-outline-secondary btn-sm"> 削除 </button>
+                                        <button class="btn btn-outline-secondary btn-sm"> Delete </button>
                                     </form>
                                 @else
                                 @endif
@@ -86,8 +86,7 @@
                         <div class="row">
                             <!-- いいねしたユーザ一覧への遷移 -->
                             <div class="col">
-                                <a>liked by:</a>
-                                <a href="{{ action('LikeUserController@index', $post->id) }}">Likeした人</a>
+                                <a href="{{ action('LikeUserController@index', $post->id) }}">Liked by</a>
                             </div>
 
                             <!-- ニックネームの表示 -->

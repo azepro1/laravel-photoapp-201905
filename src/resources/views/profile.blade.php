@@ -23,7 +23,7 @@
                 <!-- ニックネームの表示 -->
                 <h5>{{ $nickname }}</h5>
                 <!-- Like数の表示 -->
-                <p>もらったLikeの数：　{{ $likes_count }}</p>
+                <p>Received {{ $likes_count }} Likes</p>
         </div>
     </div>
 

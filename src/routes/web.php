@@ -36,3 +36,6 @@ Route::post('/like/destroy/post/{id}', 'LikeController@destroy');
 Route::get('/likeuser/index/post/{id}', 'LikeUserController@index');
 
 Route::get('/profile/user/{id}', 'ProfileController@index');
+
+//テスト用
+//Route::get('/test', 'TestController@index');

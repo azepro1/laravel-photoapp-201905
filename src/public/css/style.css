@@ -1,1 +1,7 @@
-.container { margin-top: 1rem}; 
+@charset "utf-8";
+
+.container { margin-top: 1rem; }
+.title-font { font-family: 'Bradley Hand', 'Comic Sans MS', sans-serif; }
+body {
+    font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'  
+    }
