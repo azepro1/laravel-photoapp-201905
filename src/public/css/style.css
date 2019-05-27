@@ -1,10 +1,20 @@
 @charset "utf-8";
 
-.container { margin-top: 1rem; }
-.title-font { font-family: 'Bradley Hand', 'Comic Sans MS', sans-serif; }
+/*共通部*/
+.container { 
+    margin-top: 1rem;
+}
+.title-font {
+    font-family: 'Bradley Hand', 'Comic Sans MS', sans-serif;
+}
 body {
     font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'  
     }
+
+/*ホーム画面 - 投稿*/
+.grid-item {
+    padding-bottom: 1rem;
+}
 
 .image-delete {
     position: relative;
@@ -22,3 +32,4 @@ body {
     color: palevioletred;
 }
   
+

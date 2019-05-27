@@ -8,8 +8,11 @@
 @endsection
 @section('content')
 
-  <div class="card-columns">
+  <div class="row grid">
   @foreach ($posts as $post)
+    <div class="col-lg-4 grid-sizer"></div>
+    
+    <div class="col-md-4 grid-item">
     <div class="card">
       <div class="image-delete">
 
@@ -61,10 +64,11 @@
         <a href="{{ action('LikeUserController@index', $post->id) }}" class="">{{ $post->like_count }} Users Liked</a>
       </div>
     </div>
+    </div>
   @endforeach
   </div>
 
-  <!--フッタ-->
+  <!--ページネーション-->
   <ul class="pagination justify-content-center" style="margin:20px 0">
       {{ $posts->links() }}
   </ul>

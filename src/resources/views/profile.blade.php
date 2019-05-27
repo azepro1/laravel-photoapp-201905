@@ -28,9 +28,10 @@
     </div>
 
     <!-- 画像一覧表示 -->
-    <div class="row">
+    <div class="row grid">
+        <div class="col-md-3 grid-sizer"></div>
         @foreach ($posts as $post)
-            <div class="col-md-3 m-0 p-0">
+            <div class="col-md-3 m-0 p-0 grid-item">
                 <!-- 画像の表示 -->
                 <img class="img-fluid" src="{{ asset($post->path) }}">
             </div>
