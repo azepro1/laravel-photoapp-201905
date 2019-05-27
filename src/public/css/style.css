@@ -31,5 +31,10 @@ body {
 .like-color {
     color: palevioletred;
 }
+
+.lity-content img{
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+}
   
 

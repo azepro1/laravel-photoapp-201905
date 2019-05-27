@@ -8,13 +8,41 @@
 @endsection
 @section('content')
 
+  <!-- 画像投稿成功時のメッセージ。 -->
+  @if (session('success'))
+  <div class="alert alert-success">
+      {{ session('success') }}
+  </div>
+  @endif
+
+  <!-- ログインしてる？ -->
+  @if(Session::get('user_id'))
+      <div class="float-right">
+          {{ 'logged_in:' }}
+          <a href="{{ action('ProfileController@index', $login_user->id) }}">
+              {{ $login_user->social_id }}
+              <img src="{{ asset($login_user->image_path) }}" width="35">
+          </a>
+      </div>
+      <br>
+  @else
+    <div class="float-right text-danger">
+      {{ 'You\'re not logged in' }}
+    </div>
+    <br>
+  @endif
+  <hr>
+
+  <!-- 投稿部分 -->
   <div class="card-columns">
   @foreach ($posts as $post)
     <div class="card">
       <div class="image-delete">
 
         <!-- 画像の表示 -->
-        <img id="post_photo" class= "card-img-top img-fluid rounded" src="{{ asset($post->path) }}">
+        <a href="{{ asset($post->path) }}" data-lity=”data-lity”>
+          <img id="post_photo" class= "card-img-top img-fluid rounded" src="{{ asset($post->path) }}">
+        </a>
 
         <!-- 投稿ユーザとログインユーザが同じ場合に削除ボタンを表示 -->
         @if($post->user_id === Session::get('user_id'))
@@ -40,14 +68,14 @@
         @if(Session::get('user_id'))
             <!-- if:Like済みの場合 -->
             @if($post->liked)
-                <form action="{{ action('LikeController@destroy', $post->id) }}" method="post">
+                <form action="{{ action('LikeController@destroy', $post->id) }}" method="post" style="display:inline;" class="ml-4">
                     {{ csrf_field() }}
                     <?php $request->session()->put('user_id', Session::get('user_id')); ?>
                     <input type="submit" value="&#xf004; Liked" class="fas">
                 </form>
             <!-- if:Likeしてない場合 -->
             @else
-                <form action="{{ action('LikeController@store', $post->id) }}" method="post">
+                <form action="{{ action('LikeController@store', $post->id) }}" method="post" style="display:inline;" class="ml-4">
                     {{ csrf_field() }}
                     <?php $request->session()->put('user_id', Session::get('user_id')); ?>
                     <input type="submit" value="&#xf004; Like!" class="fas like-color">
@@ -55,10 +83,10 @@
             @endif
         <!-- else:ログインしてない場合：ボタン非アクティブ -->
         @else
-            <input type="button" value="&#xf004; Like" class="fas like-color">
+            <input type="button" value="&#xf004; Like" class="fas like-color ml-4">
         @endif
         <!-- いいねしたユーザ一覧への遷移 -->
-        <a href="{{ action('LikeUserController@index', $post->id) }}" class="">{{ $post->like_count }} Users Liked</a>
+        <a href="{{ action('LikeUserController@index', $post->id) }}" class="ml-5">{{ $post->like_count }} Users Liked</a>
       </div>
     </div>
   @endforeach
